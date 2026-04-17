@@ -1,7 +1,9 @@
 # morse_blink
 
 **Difficulty:** Intermediate
+
 **Uses MCU:** Yes (micropython firmware)
+
 **External Hardware:** None
 
 ## Overview
