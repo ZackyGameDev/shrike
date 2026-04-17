@@ -36,6 +36,6 @@
 |------------|-------|---------|
 | 🟢 Beginner | 6 | `led_blink`, `breathing_led`, `button_debouncer`, `pmod_led_blink`, `logic_gates`, `counter_4bit` |
 | 🟡 Intermediate | 13 | `pmod_patterns`, `gpio_extender_8pin`, `gpio_extender_14pin`, `i2c_led`, `spi_loopback_led`, `uart_led`, `morse_blink`, `uart_alu`, `pll_oscillator`, `pwm_4ch`, `seven_seg_clock`, `ultrasonic_sensor`, `ws2812_led` |
-| 🔴 Advanced | 3 | `ask_modulator`, `stack_processor`, `vector4_cpu`, `vector8_cpu` |
+| 🔴 Advanced | 4 | `ask_modulator`, `stack_processor`, `vector4_cpu`, `vector8_cpu` |
 
 ---
