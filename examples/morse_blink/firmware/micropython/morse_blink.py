@@ -46,7 +46,7 @@ def send_morse_string(s: str, dot: float = 0.20, baudrate: int = 115200) -> None
         if ch == " ":
             time.sleep(7 * dot)
             continue
-        send_byte(ord(ch) & 0xFF, baudrate=baudrate)
+        send_byte(ord(ch) & 0xFF)
         time.sleep(char_duration(ch))
 
 # EXMAPLE:
