@@ -36,7 +36,7 @@ No external hardware is required.
 ## Build From Source
 
 ### FPGA (Verilog)
-1. Open `morse_new.ffpga` in Go Configure Software Hub
+1. Open `morse_blink.ffpga` in Go Configure Software Hub
 2. Click Synthesize → Generate Bitstream
 3. Output will be in `ffpga/build/`
 
