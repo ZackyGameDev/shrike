@@ -1,5 +1,9 @@
 import time
 from machine import UART, Pin
+import shrike
+
+# To flash the bitstream to the FPGA
+#shrike.flash("morse_blink.bin")
 
 # Initialize UART0 (TX=GPIO0, RX=GPIO1)
 uart = UART(0, baudrate=115200, tx=Pin(0), rx=Pin(1))
@@ -51,3 +55,19 @@ def send_morse_string(s: str, dot: float = 0.20, baudrate: int = 115200) -> None
 
 # EXAMPLE:
 # send_morse_string("SOS", dot=0.2)
+
+def morse_loop():
+    print("Input something to send in morse.")
+    print("Press Ctrl+C to return to REPL.\n")
+    
+    while True:
+        try:
+            user_input = input("[morse] ")
+            print("Sending your string to FPGA and emitting corresponding Morse code.")
+            send_morse_string(user_input)
+            print("Finished blinking Morse code.\n")
+    
+        except KeyboardInterrupt:
+            print("\nInterrupted. Returning to REPL.")
+            print("You may start this again by calling `morse_loop()`")
+            break
