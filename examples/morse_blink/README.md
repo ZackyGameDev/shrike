@@ -56,6 +56,18 @@ In `OFF`, the LED is driven low for exactly `DOT_TIME` cycles (the standard inte
 
 `DOT_TIME` is derived as `CLK / 5`, giving 200 ms at 50 MHz. `DASH_TIME` is `3 × DOT_TIME` (600 ms), matching the standard Morse ratio. To change blink speed, adjust the divisor directly in the Verilog source; all other timing scales automatically.
 
+## MCU Firmware Script (MicroPython)
+
+**How it works**
+
+A MicroPython script serves as the firmware for this example. It runs automatically upon boot if it is saved as "`main.py`" on the board storage. Otherwise you may include "`import morse_blink`" in your `main.py`. 
+
+The command for flashing the FPGA is commented out. To flash the FPGA, you must uncomment it and change the argument to the relative path of your bitstream on the shrike board.
+
+Once run, it defines and automatically calls a function `morse_loop()` which lets you interactively input sentences and watch them be blinked on the LED in Morse code by the FPGA. Under the hood it sends each character of your input string to the FPGA one by one through UART over internally connected pins. Why the characters are sent with some wait between them is explained in the next subsection. 
+
+In MicroPython REPL if you do not wish to invoke the interactive input loop; you also have the option to send a single string manually by using the `send_morse_string()` method defined in the script. 
+
 **Why the MCU paces sends**
 
 The UART RX module (taken from the `uart_sum` example [here](https://github.com/vicharak-in/shrike/blob/main/examples/uart_sum/ffpga/src/uart_rx.v)) asserts `data_valid` for one clock cycle when a complete byte has been received. The FPGA only samples `data_valid` in `IDLE`, so any byte that arrives while the FSM is in `ON` or `OFF` is silently dropped. There is no input buffer by design. This keeps the hardware minimal and the timing deterministic, but it means the MCU must wait for the FPGA to finish blinking before sending the next character. The companion script handles this with `char_duration()`, which estimates the total blink time for each character and adds a small margin.
