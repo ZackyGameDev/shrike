@@ -71,3 +71,5 @@ def morse_loop():
             print("\nInterrupted. Returning to REPL.")
             print("You may start this again by calling `morse_loop()`")
             break
+
+morse_loop()
